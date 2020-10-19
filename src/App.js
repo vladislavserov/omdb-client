@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import Main from './Main';
-import Film from './Film'
+import Main from './pages/Main';
+import Film from './pages/Film'
 
 
 // http://www.omdbapi.com/?s=titanic&apikey=7019ebd8

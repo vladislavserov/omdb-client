@@ -2,6 +2,8 @@
 // export reducers = ////
 // export () => 
 
+import { ADD_FILMS } from "./actions";
+
 
 // export default () => {};
 
@@ -11,7 +13,7 @@
 // export default functio = () => {} -
 // export functio = () => {} +
 
-export default function(state = [
+const initialState = [
     {"Title":"Titanic","Year":"1997","imdbID":"tt0120338","Type":"movie","Poster":"https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"},
     {"Title":"Titanic II","Year":"2010","imdbID":"tt1640571","Type":"movie","Poster":"https://m.media-amazon.com/images/M/MV5BMTMxMjQ1MjA5Ml5BMl5BanBnXkFtZTcwNjIzNjg1Mw@@._V1_SX300.jpg"},
     {"Title":"Titanic: The Legend Goes On...","Year":"2000","imdbID":"tt0330994","Type":"movie","Poster":"https://m.media-amazon.com/images/M/MV5BMTg5MjcxODAwMV5BMl5BanBnXkFtZTcwMTk4OTMwMg@@._V1_SX300.jpg"},
@@ -22,6 +24,14 @@ export default function(state = [
     {"Title":"Titanic","Year":"2012","imdbID":"tt1869152","Type":"series","Poster":"https://m.media-amazon.com/images/M/MV5BMTA4MjIyZWEtZjYwMS00ZmQ1LWJiMDEtMWNiNTI5NWE3OGJjXkEyXkFqcGdeQXVyNjk1Njg5NTA@._V1_SX300.jpg"},
     {"Title":"Titanic: Blood and Steel","Year":"2012–","imdbID":"tt1695366","Type":"series","Poster":"https://m.media-amazon.com/images/M/MV5BMjI2MzU2NzEzN15BMl5BanBnXkFtZTcwMzI5NTU3Nw@@._V1_SX300.jpg"},
     {"Title":"In Search of the Titanic","Year":"2004","imdbID":"tt1719665","Type":"movie","Poster":"https://m.media-amazon.com/images/M/MV5BMTAzNjY0NDA2NzdeQTJeQWpwZ15BbWU4MDIwMzc1MzEx._V1_SX300.jpg"}
-], action) {
-    return state;
+];
+
+export default function(state = initialState, action) {
+    switch (action.type) {
+        case ADD_FILMS: {
+            return action.films;
+        }
+        default:
+            return state;
+    }
 }

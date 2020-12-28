@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import FilmSearch from '../../components/FilmSearch';
 
 const film = {
     "Title":"Star Wars: Episode IV - A New Hope",
@@ -29,7 +30,9 @@ const Film = (props) => {
 
     return (
         <>
-            <div className="header"></div>
+            <div className="header">
+                <FilmSearch/>
+            </div>
             <div className="background-films-page">
                 <div className="wrapper">
                     <div className="left">

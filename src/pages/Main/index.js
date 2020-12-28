@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Main = (props) => {
-    const { films, dispatch } = props;
+    const { films } = props;
 
     return (
         <>

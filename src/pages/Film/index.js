@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import FilmSearch from '../../components/FilmSearch';
+import { omdbApiKey } from '../../config';
 
 // const film = {
 //     "Title":"Star Wars: Episode IV - A New Hope",
@@ -27,32 +28,27 @@ import FilmSearch from '../../components/FilmSearch';
 //     "Response":"True"
 // }
 
-const Film = (props) => {
+const Film = () => {
     const { filmId } = useParams();
     const [ film, setFilm ] = useState({});
     const [ isLoading, setIsLoading ] = useState(true);
 
     useEffect(() => {
-        // send request 
-        const apiKey = '7019ebd8';
-        const requestStr = `http://www.omdbapi.com/?i=${filmId}&apikey=${apiKey}`;
+        const requestStr = `http://www.omdbapi.com/?i=${filmId}&apikey=${omdbApiKey}`;
         setIsLoading(true);
         axios.get(requestStr).then((response) => {
-            setTimeout(() => {
-                if (response.data.Response === 'True') {
-                    setFilm(response.data);
-                    setIsLoading(false);
-                }
-                console.log(response);
-            }, 0)
-        }, () => {})
+            if (response.data.Response === 'True') {
+                setFilm(response.data);
+                setIsLoading(false);
+            }
+        })
     }, [filmId])
 
     const renderLoadingPage = () => {
         return (
             <>
                 <div style={{width: '490px', margin: 'auto'}}>
-                    <iframe src="https://gifer.com/embed/3vTB" width={480} height="545.280" frameBorder={0} allowFullScreen />
+                    <iframe src="https://gifer.com/embed/3vTB" width={480} height="545.280" frameBorder={0} allowFullScreen title='humster'/>
                 </div>
             </>
         )

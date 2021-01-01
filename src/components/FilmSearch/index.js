@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Typeahead } from 'react-typeahead';
-import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
-// http://www.omdbapi.com/?s=star&apikey=7019ebd8
+import { omdbApiKey } from '../../config';
 
 export default () => {
     const history = useHistory();
@@ -12,20 +10,16 @@ export default () => {
 
     const handleSearchFieldChange = (event) => {
         const searchValue = event.target.value;
-        const apiKey = '7019ebd8';
-        const requestStr = `http://www.omdbapi.com/?s=${searchValue}&apikey=${apiKey}`;
+        const requestStr = `http://www.omdbapi.com/?s=${searchValue}&apikey=${omdbApiKey}`;
         axios.get(requestStr).then((response) => {
             if (response.data.Response === 'True') {
                 const options = response.data.Search.map(({Title , imdbID}) => ({ title: Title , imdbId: imdbID }));
                 setOptions(options);
             }
-            console.log(response);
-        }, () => {})
+        })
     }
 
     const handleOptionSelected = ({ imdbId }) => {
-        // console.log(event);
-        // redirect
         history.push(`/film/${ imdbId }`);
     }
 

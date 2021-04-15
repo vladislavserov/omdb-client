@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import FilmSearch from '../../components/FilmSearch';
-import { omdbApiKey } from '../../config';
+// import { omdbApiKey } from '../../config';
+import { omdbApiKey } from '../../';
 
 // const film = {
 //     "Title":"Star Wars: Episode IV - A New Hope",

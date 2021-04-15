@@ -39,12 +39,17 @@
 }
 
 .header {
+  /* position: absolute; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
   width: 100%;
   height: 40px;
-  background-color: rgb(54, 54, 54);
+  background-color: rgba(49, 158, 140, 0.712);
 }
 
 .wrapper {
+  margin-top: 40px;
   display: flex;
   width: 80%;
   height: 100%;
@@ -52,9 +57,11 @@
 }
 
 .background-films-page {
-  justify-content: center;
+  
+  /* justify-content: center; */
   background-color: rgba(128, 128, 128, 0.24);
   display: flex;
+  height: 100%;
 }
 
 .poster {
@@ -72,6 +79,7 @@
 }
 
 .middle {
+  /* margin-top: 20px; */
   margin-left: 20px;
   width: 50%;
 }
@@ -80,21 +88,37 @@
   height: 100px;
 }
 
+.custom-element {
+  margin: 7px;
+}
+
+.typeahead {
+  margin-left: 7px;
+  /* margin-top: 7px; */
+}
+
 .typeahead-selector {
   position: relative;
   margin: 0;
   padding: 0;
   width: max-content;
+  border-radius: 5px;
+  border:rgba(83, 78, 78, 0.74) 2px solid;
   /* display: inline-block; */
 }
 
 .typeahead-selector li {
   list-style-type: none;
   z-index: 100;
-  background-color: rgb(54, 54, 54);
+  background-color: rgba(14, 182, 154, 0.973);
  }
 
 .typeahead-selector li a {
   color: black;
   text-decoration: none;
+}
+
+.element-style {
+  
+  margin-right: 0px;
 }

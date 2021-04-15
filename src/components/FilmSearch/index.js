@@ -30,6 +30,7 @@ export default () => {
             displayOption={'title'} 
             options={options}
             maxVisible={6}
+            
         />
     );
 };

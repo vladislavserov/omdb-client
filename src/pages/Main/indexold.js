@@ -11,7 +11,6 @@ const { Meta } = Card;
 const Main = ({ films }) => {
   const [ searchValue, setSearchValue ] = useState();
   // const minHight = films.map((film) => film)
-  console.log(films)
   return (
     <>
       <div className="header">
@@ -20,10 +19,24 @@ const Main = ({ films }) => {
         {/* </MainFilmSearchHeader> */}
       <div className="site-card-wrapper" style={{marginTop:'5px'/*, display:'flex', justifyContent:'center'*/}}>
       <Row gutter={16}>
-      { films.map((film) => {
-            console.log(films)
-        return <FilmPromo film={film} />
-      }
+      { films.map((film) =>
+          <>
+              {/* <Card
+                  hoverable
+                  style={{ width: 400 }}
+                  cover={<img alt={film.Title} src={film.Poster} />}
+                  >
+                  <Meta title={<Link to={`/film/${film.imdbID}`}>{film.Title}</Link>} description="www.instagram.com" />
+                </Card> */}
+              <Col span={8} /*style={{display:'flex', justifyContent:'center', flexDirection:'row'}}*/>
+                <img alt={film.Title} src={film.Poster} style={{maxHeight:'400px', maxWidth:'300px'}}/>
+                <Card title={<Link to={`/film/${film.imdbID}`}>{film.Title}</Link>} bordered={false}>
+                </Card>
+              </Col>
+              {/* <img src={film.Poster} alt={film.Title}/>
+              <Link to={`/film/${film.imdbID}`}>{film.Title}</Link>
+            <hr/> */}
+          </>
       ) }
       </Row>
       </div>

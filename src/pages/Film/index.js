@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import FilmSearch from '../../components/FilmSearch';
-import { omdbApiKey } from '../../config';
-
+import { fetchFilmById } from '../../store/thunks'
 // const film = {
 //     "Title":"Star Wars: Episode IV - A New Hope",
 //     "Year":"1977",
@@ -28,78 +27,71 @@ import { omdbApiKey } from '../../config';
 //     "Response":"True"
 // }
 
-const Film = () => {
-    const { filmId } = useParams();
-    const [ film, setFilm ] = useState({});
-    const [ isLoading, setIsLoading ] = useState(true);
+const Film = ({dispatch, film}) => {
+  const { filmId } = useParams();
 
-    useEffect(() => {
-        const requestStr = `http://www.omdbapi.com/?i=${filmId}&apikey=${omdbApiKey}`;
-        setIsLoading(true);
-        axios.get(requestStr).then((response) => {
-            if (response.data.Response === 'True') {
-                setFilm(response.data);
-                setIsLoading(false);
-            }
-        })
-    }, [filmId])
+  const [ isLoading, setIsLoading ] = useState(false);
 
-    const renderLoadingPage = () => {
-        return (
-            <>
-                <div style={{width: '490px', margin: 'auto'}}>
-                    <iframe src="https://gifer.com/embed/3vTB" width={480} height="545.280" frameBorder={0} allowFullScreen title='humster'/>
-                </div>
-            </>
-        )
-    }
+  useEffect(() => {
+    dispatch(fetchFilmById(filmId))
+  }, [filmId])
 
-    const renderInfoPage = () => {
-        return (
-            <>
-                <div className="background-films-page">
-                    <div className="wrapper">
-                        <div className="left">
-                            <img src={film.Poster} alt={film.Title} className="poster"/>
-
-                        </div>
-                        <div className="middle">
-                            <div className="title">
-                                <h1>{film.Title}</h1>
-                            </div>
-                            <h3>About:</h3>
-                            <p>Year :       {film.Year}</p>
-                            <p>Released :   {film.Released}</p>
-                            <p>Genre :      {film.Genre}</p>
-                            <p>Director :   {film.Director}</p>
-                            <p>Actors :     {film.Actors}</p>
-                            <p>Awards :     {film.Awards}</p>
-                            <Link to='/'>Home</Link>
-
-                        </div>
-                        <div className="right"></div>
-                    </div>
-                </div>
-            </>
-        )
-    }
-
-    const renderPage = () => {
-        if (isLoading) {
-            return renderLoadingPage();
-        } 
-         
-        return renderInfoPage();
-    }
-
+  const renderLoadingPage = () => {
     return (
-        <>
-            <div className="header">
-                <FilmSearch/>
-            </div>
-            {renderPage()}
-        </>
+      <>
+        <div style={{width: '490px', margin: 'auto'}}>
+          <iframe src="https://gifer.com/embed/3vTB" width={480} height="545.280" frameBorder={0} allowFullScreen title='humster'/>
+        </div>
+      </>
     )
+  }
+
+  const renderInfoPage = (film) => {
+    return (
+      <>
+        <div className="background-films-page">
+          <div className="wrapper" style={{display:'flex', flexDirection: 'row',}}>
+            {/* <div className="left"> */}
+              <img src={film.Poster} alt={film.Title} className="poster"/>
+
+            {/* </div> */}
+            <div className="middle">
+              <div className="title">
+                <h1>{film.Title}</h1>
+              </div>
+              <h3>About:</h3>
+              <p>Year :       {film.Year}</p>
+              <p>Released :   {film.Released}</p>
+              <p>Genre :      {film.Genre}</p>
+              <p>Director :   {film.Director}</p>
+              <p>Actors :     {film.Actors}</p>
+              <p>Awards :     {film.Awards}</p>
+              <Link to='/'>Home</Link>
+            </div>
+            {/* <div className="right"></div> */}
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  const renderPage = () => {
+    if (isLoading) {
+        return renderLoadingPage();
+    }
+
+    return renderInfoPage(film);
+  }
+
+  return (
+    <>
+      <div className="header">
+          <FilmSearch/>
+      </div>
+      {renderPage()}
+    </>
+  )
 }
 
-export default Film;
+const mapStateToProps = ({film}) => ({film});
+export default connect(mapStateToProps)(Film);

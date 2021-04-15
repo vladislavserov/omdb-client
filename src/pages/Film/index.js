@@ -2,13 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import FilmSearch from '../../components/FilmSearch';
-<<<<<<< HEAD
-// import { omdbApiKey } from '../../config';
-import { omdbApiKey } from '../../';
-
-=======
 import { fetchFilmById } from '../../store/thunks'
->>>>>>> 957b2cee22caf027564b734fad47cb48446c333e
 // const film = {
 //     "Title":"Star Wars: Episode IV - A New Hope",
 //     "Year":"1977",

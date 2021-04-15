@@ -21,8 +21,8 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/" ><Main /></Route>
-          <Route exact path="/film/:filmId"><Film /></Route>
+          <Route exact path="/omdb-client" ><Main /></Route>
+          <Route exact path="/omdb-client/film/:filmId"><Film /></Route>
         </Switch>
       </Router>
     </Provider>

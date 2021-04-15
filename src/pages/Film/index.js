@@ -50,11 +50,11 @@ const Film = ({dispatch, film}) => {
     return (
       <>
         <div className="background-films-page">
-          <div className="wrapper">
-            <div className="left">
+          <div className="wrapper" style={{display:'flex', flexDirection: 'row',}}>
+            {/* <div className="left"> */}
               <img src={film.Poster} alt={film.Title} className="poster"/>
 
-            </div>
+            {/* </div> */}
             <div className="middle">
               <div className="title">
                 <h1>{film.Title}</h1>
@@ -68,7 +68,7 @@ const Film = ({dispatch, film}) => {
               <p>Awards :     {film.Awards}</p>
               <Link to='/'>Home</Link>
             </div>
-            <div className="right"></div>
+            {/* <div className="right"></div> */}
           </div>
         </div>
       </>

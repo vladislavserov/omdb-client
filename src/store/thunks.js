@@ -13,9 +13,10 @@ export const fetchFilmById = (filmId) => {
   }
 }
 
-export const fetchFilmsByQuery = (query) => {
+export const fetchFilmsByQuery = (query, page = '1') => {
+  console.log(query, page)
   return (dispatch) => {
-    const requestStr = `http://www.omdbapi.com/?s=${query}&apikey=${omdbApiKey}`;
+    const requestStr = `http://www.omdbapi.com/?s=${query}&page=${page}&apikey=${omdbApiKey}`;
     axios.get(requestStr).then((response) => {
       if (response.data.Response === 'True') {
         dispatch(setFilms(response.data.Search))
